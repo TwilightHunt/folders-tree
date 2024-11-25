@@ -1,5 +1,4 @@
 # folders-tree
-_
 
 ## Build Setup
 
