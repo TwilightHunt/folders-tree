@@ -2,14 +2,19 @@
 import type { IBaseTreeProps } from './types.i'
 import BaseTreeItem from '../BaseTreeItem/BaseTreeItem.vue'
 
-defineProps<IBaseTreeProps>()
+withDefaults(defineProps<IBaseTreeProps>(), {
+  isRootElement: true,
+})
 defineSlots<{
   [key: string]: unknown
 }>()
 </script>
 
 <template>
-  <div class="tree">
+  <div
+    class="tree"
+    :class="{ 'tree--root': isRootElement }"
+  >
     <BaseTreeItem
       v-for="item in items"
       :item="item"
@@ -28,4 +33,10 @@ defineSlots<{
   </div>
 </template>
 
-<style lang="scss" scoped></style>
+<style lang="scss" scoped>
+.tree {
+  &:not(.tree--root) {
+    margin-left: 5px;
+  }
+}
+</style>
